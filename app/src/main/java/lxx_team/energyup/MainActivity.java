@@ -1,21 +1,77 @@
 package lxx_team.energyup;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.SaveCallback;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+    private Button mPostLocationButton;
+    private TextView positionView;
+    private LocationManager locationManager;
+    private String locationProvider;
+
+
+    private final int LOCATION_CODE = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        positionView = (TextView) findViewById(R.id.position_view);
+
+
+        //获取地理位置管理器
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        //获取所有可用的位置提供器
+        List<String> providers = locationManager.getProviders(true);
+        if(providers.contains(LocationManager.GPS_PROVIDER)){
+            //如果是GPS
+            locationProvider = LocationManager.GPS_PROVIDER;
+        }else if(providers.contains(LocationManager.NETWORK_PROVIDER)){
+            //如果是Network
+            locationProvider = LocationManager.NETWORK_PROVIDER;
+        }else{
+            Toast.makeText(this, "没有可用的位置提供器", Toast.LENGTH_SHORT).show();
+            return ;
+        }
+        //获取Location
+        if ((ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+            || (ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)){
+
+            ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    LOCATION_CODE);
+
+        };
+        final Location location = locationManager.getLastKnownLocation(locationProvider);
+        //locationManager.requestLocationUpdates(locationProvider, 3000, 1, locationListener);
+
+
 
         // 测试 SDK 是否正常工作的代码
         AVObject testObject = new AVObject("TestObject");
@@ -29,8 +85,88 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        setContentView(R.layout.activity_main);
+        mPostLocationButton = (Button)findViewById(R.id.post_location);
+        mPostLocationButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                showLocation(location);
+
+
+                /*
+                Intent i = new Intent(MainActivity.this,DisplayCharger.this);
+                startActivity(i);
+                */
+            }
+        });
+
+
+
     }
+
+    LocationListener locationListener =  new LocationListener() {
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle arg2) {
+
+        }
+
+        @Override
+        public void onProviderEnabled(String provider) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String provider) {
+
+        }
+
+        @Override
+        public void onLocationChanged(Location location) {
+            //如果位置发生变化,重新显示
+            showLocation(location);
+
+        }
+    };
+
+
+    /**
+     * Show the current location on textview
+     * @param location is the current location
+     */
+    private void showLocation(Location location){
+        String locationStr = "维度：" + location.getLatitude() +"\n"
+                + "经度：" + location.getLongitude();
+        positionView.setText(locationStr);
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case LOCATION_CODE: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Location service successfully enabled.", Toast.LENGTH_SHORT).show();
+                    return;
+                    // permission was granted, yay! Do the
+                    // contacts-related task you need to do.
+
+                } else {
+                    Toast.makeText(this, "Location service not enabled.", Toast.LENGTH_SHORT).show();
+                    return;
+                    // permission denied, boo! Disable the
+                    // functionality that depends on this permission.
+                }
+            }
+
+            // other 'case' lines to check for other
+            // permissions this app might request
+        }
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
