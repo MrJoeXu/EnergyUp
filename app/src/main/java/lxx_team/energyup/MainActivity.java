@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -20,12 +21,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.avos.avoscloud.AVException;
+import com.avos.avoscloud.AVGeoPoint;
+import com.avos.avoscloud.AVOSCloud;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.SaveCallback;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        LocationListener{
 
     private Button mPostLocationButton;
     private TextView positionView;
@@ -41,39 +45,28 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
         positionView = (TextView) findViewById(R.id.position_view);
 
 
         //获取地理位置管理器
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        //获取所有可用的位置提供器
-        List<String> providers = locationManager.getProviders(true);
-        if(providers.contains(LocationManager.GPS_PROVIDER)){
-            //如果是GPS
-            locationProvider = LocationManager.GPS_PROVIDER;
-        }else if(providers.contains(LocationManager.NETWORK_PROVIDER)){
-            //如果是Network
-            locationProvider = LocationManager.NETWORK_PROVIDER;
-        }else{
-            Toast.makeText(this, "没有可用的位置提供器", Toast.LENGTH_SHORT).show();
-            return ;
-        }
         //获取Location
-        if ((ContextCompat.checkSelfPermission(MainActivity.this,
-                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED)
-            || (ContextCompat.checkSelfPermission(MainActivity.this,
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)){
-
-            ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+        if (ContextCompat.checkSelfPermission(MainActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                     LOCATION_CODE);
 
-        };
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 400,1000, this);
+
+        Criteria criteria = new Criteria();
+        locationProvider = locationManager.getBestProvider(criteria,true);
         final Location location = locationManager.getLastKnownLocation(locationProvider);
         //locationManager.requestLocationUpdates(locationProvider, 3000, 1, locationListener);
 
 
 
-        // 测试 SDK 是否正常工作的代码
+        /** 测试 SDK 是否正常工作的代码
         AVObject testObject = new AVObject("TestObject");
         testObject.put("words", "Hello World!");
         testObject.saveInBackground(new SaveCallback() {
@@ -84,14 +77,26 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
+        */
         mPostLocationButton = (Button)findViewById(R.id.post_location);
         mPostLocationButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                showLocation(location);
+
+           
 
 
+
+
+                if (location!=null) {
+                    Toast.makeText(MainActivity.this, "uploading location", Toast.LENGTH_LONG).show();
+                    AVGeoPoint point = new AVGeoPoint(location.getLatitude(),location.getLongitude());
+                    AVObject location1 = new AVObject("Location");
+                    location1.put("location", point);
+                    location1.saveInBackground();
+
+
+                }
                 /*
                 Intent i = new Intent(MainActivity.this,DisplayCharger.this);
                 startActivity(i);
@@ -188,5 +193,26 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onLocationChanged(Location location) {
+        showLocation(location);
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String s){
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
     }
 }
