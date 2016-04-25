@@ -83,10 +83,6 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onClick(View v){
 
-           
-
-
-
 
                 if (location!=null) {
                     Toast.makeText(MainActivity.this, "uploading location", Toast.LENGTH_LONG).show();
