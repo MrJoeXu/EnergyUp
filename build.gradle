@@ -9,6 +9,7 @@ buildscript {
             url "http://mvn.leancloud.cn/nexus/content/repositories/releases"
         }
     }
+
     dependencies {
         classpath 'com.android.tools.build:gradle:1.2.3'
 

@@ -3,4 +3,23 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_display_charger">Chargers Near You</string>
+    <string name="title_activity_display_chargers">DisplayChargers</string>
+    <string name="title_activity_user_register">UserRegister</string>
+    <string name="email_hint">Email Address</string>
+    <string name="password">Password</string>
+    <string name="signup">Sign Up</string>
+    <string name="username">You Name</string>
+    <string name="title_activity_user_login">UserLogin</string>
+    <string name="login">Log In</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="google_maps_key">AIzaSyD4-jMs0qJ5JR1pjZvj-EyAuxD6dKTjp-U</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+
+
 </resources>

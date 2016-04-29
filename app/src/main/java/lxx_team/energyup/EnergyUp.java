@@ -18,7 +18,8 @@ public class EnergyUp extends Application{
         super.onCreate();
 
         // Initialize parameter for this, AppId, AppKey
-        AVOSCloud.initialize(this, "3z95KghEnMhAKeF96q0btdQ3-MdYXbMMI", "tV0H3rwu8S4dvXiuFd9XC0y6");
         AVOSCloud.useAVCloudUS();
+
+        AVOSCloud.initialize(this, "3z95KghEnMhAKeF96q0btdQ3-MdYXbMMI", "tV0H3rwu8S4dvXiuFd9XC0y6");
     }
 }
