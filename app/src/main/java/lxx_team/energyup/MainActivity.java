@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         requestDevice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent requestIntent = new Intent(this, BorrowChargerActivity.class);
+                Intent requestIntent = new Intent(MainActivity.this, BorrowChargerActivity.class);
                 startService(requestIntent);
             }
         });
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         postDevice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent postIntent = new Intent(this,HaveChargerActivity);
+                Intent postIntent = new Intent(MainActivity.this, HaveChargerActivity.class);
                 startService(postIntent);
             }
         });
