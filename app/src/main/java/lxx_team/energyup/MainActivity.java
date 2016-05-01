@@ -1,5 +1,6 @@
 package lxx_team.energyup;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +14,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.SaveCallback;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         //Set listener for requset button and post device button
         final Button requestDevice = (Button) findViewById(R.id.request_button);
         final Button postDevice = (Button) findViewById(R.id.post_button);
-
+        /**
         requestDevice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 startService(postIntent);
             }
         });
+         */
 
     }
 

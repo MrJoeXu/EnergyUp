@@ -1,5 +1,6 @@
 package lxx_team.energyup;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RatingBar;
 
-public class FinishTransactionActivity extends AppCompatActivity {
+public class FinishTransactionActivity extends Activity {
+
     private float rating;
     private Button button;
     private RatingBar ratingBar;
@@ -35,19 +37,16 @@ public class FinishTransactionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                Intent mainIntent = new Intent(FinishTransactionActivity.this, MainActivity.class);
-
+               startActivity(mainIntent);
+               finish();
             }
         });
-
-
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_finish_transaction, menu);
-
-
 
         return true;
     }
@@ -63,7 +62,6 @@ public class FinishTransactionActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
