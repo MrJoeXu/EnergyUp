@@ -10,25 +10,29 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
     <!-- 基础模块 END -->
-
-
     <application
         android:name=".EnergyUp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/CustomTheme">
-    //android:theme="@android:style/Theme.Black.NoTitleBar">
-
-    <service android:name="com.avos.avoscloud.PushService" />
+        android:theme="@style/CustomTheme"
+        >
+        <service android:name="com.avos.avoscloud.PushService"
+            android:exported="true"/>
 
         <receiver android:name="com.avos.avoscloud.AVBroadcastReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
         </receiver>
 
@@ -47,11 +51,6 @@
         <activity
             android:name=".UserLogin"
             android:label="@string/title_activity_user_login" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
 
         <meta-data
@@ -61,10 +60,19 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="@string/google_maps_key" />
 
-    </application>
+        <activity
+            android:name=".BorrowChargerActivity"
+            android:label="@string/title_activity_borrow_charger" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true"/>
+        </activity>
+        <activity
+            android:name=".SendRequestActivity"
+            android:label="@string/title_activity_send_request" >
+        </activity>
+    </application>
 
 </manifest>

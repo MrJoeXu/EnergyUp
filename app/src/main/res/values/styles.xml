@@ -4,6 +4,12 @@
     <color name="primary">#3CCA79</color>
     <color name="primary_dark">#36B76E</color>
     <color name="primary_background">#4A4B55</color>
+    <color name="secondary_background">#5C5F6B</color>
+    <color name="secondary_title_color">#919297</color>
+    <color name="card_view_background">#71D49A</color>
+
+
+
 
 
     <style name="CustomTheme" parent="android:Theme.Black.NoTitleBar">

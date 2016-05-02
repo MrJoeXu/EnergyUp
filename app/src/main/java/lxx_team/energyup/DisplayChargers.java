@@ -65,33 +65,6 @@ public class DisplayChargers extends Activity implements LocationListener{
         btnSwitch = (Button) findViewById(R.id.id_title_right_btn);
 
 
-
-        btnSwitch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                if (!mapMode) {
-                    if (fMap == null) {
-                        fMap = new DisplayMapContentFragment();
-                    }
-                    transaction.replace(R.id.display_content, fMap);
-                    transaction.commit();
-                    //btnSwitch.setBackgroundResource(R.drawable.list);
-                    mapMode = true;
-                } else {
-                    if (fList == null) {
-                        fList = new DisplayListContentFragment();
-                    }
-                    transaction.replace(R.id.display_content, fList);
-                    transaction.commit();
-                    //btnSwitch.setBackgroundResource(R.drawable.location);
-                    mapMode = false;
-                }
-
-            }
-        });
-
         btnSwitch.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

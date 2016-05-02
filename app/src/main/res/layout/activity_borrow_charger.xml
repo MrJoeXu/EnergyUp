@@ -1,0 +1,235 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="lxx_team.energyup.BorrowChargerActivity"
+    android:padding="0dp">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/needcharger"
+        android:id="@+id/borrow_charge_title">
+
+        <Button
+            android:id="@+id/borrow_charge_back"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/back"/>
+
+        <ImageView
+            android:id="@+id/charger_icon"
+            android:layout_width="35dp"
+            android:layout_height="56dp"
+            android:background="@drawable/charger"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp"
+            android:gravity="center"
+            android:text="NEED A CHARGER?"
+            android:textColor="#fff"
+            android:textSize="25sp"
+            android:layout_below="@id/charger_icon"
+            android:fontFamily="sans-serif-bold"
+            />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_below="@+id/borrow_charge_title"
+        >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Phones and Tablets"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/secondary_title_color"
+                android:id="@+id/phones_tablets_title"
+
+                />
+
+            <RelativeLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/phones_tablets_title"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="23dp"
+                android:id="@+id/container_phones">
+                <Button
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@color/secondary_background"
+                    android:drawableTop="@drawable/lightningicon"
+                    android:drawingCacheQuality="high"
+                    android:paddingTop="10dp"
+                    android:textSize="10dp"
+                    android:textColor="#ffffff"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Apple Lighting"
+                    android:id="@+id/btn_lighting"
+                    />
+
+
+                <Button
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@color/secondary_background"
+                    android:drawableTop="@drawable/pin"
+                    android:drawingCacheQuality="high"
+                    android:paddingTop="10dp"
+                    android:shadowColor="#000000"
+                    android:textSize="10dp"
+                    android:textColor="#ffffff"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Apple 30-pins"
+                    android:layout_marginLeft="25dp"
+                    android:layout_toRightOf="@+id/btn_lighting"
+                    android:id="@+id/btn_30pins"/>
+
+                <Button
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:drawableTop="@drawable/miniusb"
+                    android:drawingCacheQuality="high"
+                    android:paddingTop="10dp"
+                    android:background="@color/secondary_background"
+                    android:shadowColor="#000000"
+                    android:textSize="10dp"
+                    android:textColor="#ffffff"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Mini USB"
+                    android:layout_marginLeft="25dp"
+                    android:layout_toRightOf="@+id/btn_30pins"
+                    android:id="@+id/btn_miniusb"
+                    />
+
+
+                <Button
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@color/secondary_background"
+                    android:shadowColor="#000000"
+                    android:textSize="10dp"
+                    android:textColor="#ffffff"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Micro USB"
+                    android:id="@+id/btn_microusb"
+                    android:layout_marginTop="30dp"
+                    android:layout_below="@+id/btn_lighting"
+                    android:drawableTop="@drawable/microusb"
+                    android:drawingCacheQuality="high"
+                    android:paddingTop="15dp"/>
+
+                <Button
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@color/secondary_background"
+                    android:shadowColor="#000000"
+                    android:textSize="10dp"
+                    android:textColor="#ffffff"
+                    android:fontFamily="sans-serif-light"
+                    android:text="USB Type-C"
+                    android:id="@+id/btn_typec"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_toRightOf="@+id/btn_microusb"
+                    android:layout_below="@+id/btn_30pins"
+                    android:drawableTop="@drawable/typec"
+                    android:drawingCacheQuality="high"
+                    android:paddingTop="15dp"/>
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Laptops"
+                android:layout_below="@+id/container_phones"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="20dp"
+                android:id="@+id/laptops_title"
+                android:textColor="@color/secondary_title_color" />
+
+
+            <RelativeLayout
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/laptops_title"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="23dp"
+                android:id="@+id/container_laptops"
+                android:layout_marginBottom="40dp">
+                <Button
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@color/secondary_background"
+                    android:shadowColor="#000000"
+                    android:textSize="10dp"
+                    android:textColor="#ffffff"
+                    android:fontFamily="sans-serif-light"
+                    android:paddingTop="15dp"
+                    android:drawableTop="@drawable/applelogo"
+                    android:text="Apple"
+                    android:id="@+id/btn_apple"/>
+
+                <Button
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:background="@color/secondary_background"
+                    android:shadowColor="#000000"
+                    android:textSize="10dp"
+                    android:drawableTop="@drawable/hp"
+                    android:paddingTop="15dp"
+                    android:textColor="#ffffff"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Hewlett-Packard"
+                    android:layout_marginLeft="25dp"
+                    android:layout_toRightOf="@+id/btn_apple"
+                    android:id="@+id/btn_hp"/>
+
+                <Button
+                    android:layout_width="90dp"
+                    android:paddingTop="15dp"
+                    android:layout_height="90dp"
+                    android:background="@color/secondary_background"
+                    android:shadowColor="#000000"
+                    android:textSize="10dp"
+                    android:drawableTop="@drawable/dell"
+                    android:textColor="#ffffff"
+                    android:fontFamily="sans-serif-light"
+                    android:id="@+id/btn_dell"
+                    android:text="Dell"
+                    android:layout_marginLeft="30dp"
+                    android:layout_toRightOf="@+id/btn_hp"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

@@ -1,0 +1,299 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="0dp"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:context="lxx_team.energyup.SendRequestActivity">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/primary"
+        android:id="@+id/send_request_title">
+
+        <Button
+            android:id="@+id/send_request_back"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/back"/>
+
+        <ImageView
+            android:id="@+id/charger_icon"
+            android:layout_width="25dp"
+            android:layout_height="37.5dp"
+
+            android:background="@drawable/charger"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"/>
+
+
+        <TextView
+            android:id="@+id/send_request_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Applen Lightning"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:layout_below="@id/charger_icon"
+            android:fontFamily="sans-serif-light" />
+
+    </RelativeLayout>
+
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:layout_below="@+id/send_request_title">
+
+        <RelativeLayout
+            android:id="@+id/nearby_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/nearby_info_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nice! We Find..."
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:textColor="@color/secondary_title_color" />
+
+            <RelativeLayout
+                android:id="@+id/nearby_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nearby_info_title"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="23dp">
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/request_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="How About Make A Request?"
+                android:layout_below="@+id/nearby_info"
+                android:layout_marginTop="40dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="30dp"
+                android:textColor="@color/secondary_title_color" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/request_container"
+                android:layout_below="@id/request_title"
+                android:background="@color/card_view_background"
+                card_view:cardBackgroundColor="@color/card_view_background"
+                android:layout_width="300dp"
+                android:layout_height="250dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="40dp"
+                card_view:cardCornerRadius="5dp">
+
+                <RelativeLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent">
+
+                    <TextView
+                        android:id="@+id/request_header"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="I Would Like To Borrow..."
+                        android:textStyle="italic"
+                        android:fontFamily="sans-serif-black"
+                        android:textColor="#ffffff"
+                        android:textSize="18dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="15dp"
+                        />
+
+                    <RelativeLayout
+                        android:id="@+id/energy_spend_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="40dp"
+                        android:paddingRight="40dp"
+                        android:layout_marginTop="40dp"
+                        android:layout_below="@id/request_header">
+
+                        <TextView
+                            android:id="@+id/hint_energy_spend"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Energy To Spend: "
+                            android:fontFamily="sans-serif-light"
+                            android:textColor="#ffffff"
+                            />
+
+                        <ImageView
+                            android:id="@+id/request_energy_icon"
+                            android:layout_width="15dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/energy"
+                            android:layout_toEndOf="@+id/hint_energy_spend"
+                            android:layout_marginLeft="60dp"
+                            tools:ignore="RtlCompat" />
+
+                        <EditText
+                            android:id="@+id/edit_spend_energy"
+                            android:textSize="15dp"
+                            android:layout_width="30dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="-3dp"
+                            android:padding="0dp"
+                            android:layout_marginLeft="5dp"
+                            android:background="#ffffff"
+                            android:inputType="number"
+                            android:textColorHint="@color/material_grey_300"
+                            android:textColor="@color/card_view_background"
+                            android:layout_toEndOf="@+id/request_energy_icon"
+                            tools:ignore="RtlCompat"
+                            android:hint="1"
+                            android:gravity="center_vertical|center_horizontal" />
+
+
+                        <View
+                            android:layout_width="260dp"
+                            android:layout_height="1dip"
+                            android:background="#ffffff"
+                            android:layout_centerHorizontal="true"
+                            android:foregroundGravity="clip_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@+id/request_energy_icon"
+                            />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/item_duration_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="40dp"
+                        android:paddingRight="40dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_below="@id/energy_spend_container">
+
+                        <TextView
+                            android:id="@+id/hint_time_duration"
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Time duration: "
+                            android:fontFamily="sans-serif-light"
+                            android:textColor="#ffffff"
+                            />
+
+                        <ImageView
+                            android:id="@+id/time_duration_icon"
+                            android:layout_width="15dp"
+                            android:layout_height="20dp"
+                            android:background="@drawable/clock"
+                            android:layout_toEndOf="@+id/hint_time_duration"
+                            android:layout_marginLeft="50dp"
+                            tools:ignore="RtlCompat" />
+
+                        <EditText
+                            android:id="@+id/edit_time_duration"
+                            android:textSize="15dp"
+                            android:layout_width="30dp"
+                            android:layout_height="20dp"
+                            android:layout_marginTop="-3dp"
+                            android:padding="0dp"
+                            android:layout_marginLeft="5dp"
+                            android:background="#ffffff"
+                            android:inputType="number"
+                            android:textColorHint="@color/material_grey_300"
+                            android:textColor="@color/card_view_background"
+                            android:layout_toEndOf="@+id/time_duration_icon"
+                            tools:ignore="RtlCompat"
+                            android:hint="10"
+                            android:gravity="center_vertical|center_horizontal" />
+
+
+                        <View
+                            android:layout_width="260dp"
+                            android:layout_height="1dip"
+                            android:background="#ffffff"
+                            android:layout_centerHorizontal="true"
+                            android:foregroundGravity="clip_horizontal"
+                            android:layout_marginTop="10dp"
+                            android:layout_below="@+id/time_duration_icon"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="min"
+                            android:fontFamily="sans-serif-bold"
+                            android:textColor="#ffffff"
+                            android:layout_toEndOf="@+id/edit_time_duration"
+                            android:layout_marginLeft="5dp"
+
+                            tools:ignore="RtlCompat" />
+
+
+
+                    </RelativeLayout>
+
+                    <Button
+                        android:id="@+id/btn_submit_request"
+                        android:layout_width="80dp"
+                        android:layout_height="30dp"
+                        android:textSize="10dp"
+                        android:textColor="@color/card_view_background"
+                        android:text="send request"
+                        android:background="#ffffff"
+                        style="@style/Widget.AppCompat.Button.Colored"
+                        android:shadowRadius="10"
+                        android:layout_below="@+id/item_duration_container"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginRight="40dp"
+
+
+                        tools:ignore="RtlCompat" />
+
+                    <TextView
+                        android:id="@+id/request_error_text"
+                        android:layout_width="130dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="#ffffff"
+                        android:fontFamily="sans-serif-light"
+                        android:textSize="12dp"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginLeft="40dp"
+                        android:layout_below="@+id/item_duration_container"
+                        />
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

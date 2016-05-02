@@ -28,7 +28,7 @@ public class UserLogin extends Activity {
         final TextView errMsg = (TextView)findViewById(R.id.logInErrMsg);
 
         final Button button = (Button) findViewById(R.id.btnSignUp);
-        final Intent displayIntent = new Intent(this, DisplayChargers.class);
+        final Intent displayIntent = new Intent(this, BorrowChargerActivity.class);
 
 
         button.setOnClickListener(new View.OnClickListener() {

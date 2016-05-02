@@ -1,5 +1,6 @@
 package lxx_team.energyup;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,7 +15,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.SignUpCallback;
 
-public class UserRegister extends AppCompatActivity {
+public class UserRegister extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +47,8 @@ public class UserRegister extends AppCompatActivity {
                 user.signUpInBackground(new SignUpCallback() {
                     @Override
                     public void done(AVException e) {
-                        if (e==null) {
+                        if (e == null) {
+
                             Log.d("App", "Sign Up Success!");
                             errMsg.setText("Success!");
 
@@ -54,23 +56,21 @@ public class UserRegister extends AppCompatActivity {
                             Log.d("App", "Error: " + e.getMessage());
                             if (e.getCode() == 125) {
                                 errMsg.setText("Invalid Email Address");
-                            }
-                            else if (e.getCode() == 203) {
+                            } else if (e.getCode() == 203) {
                                 errMsg.setText("Email adress already taken!");
-                            }
-                            else if (e.getCode() == 217) {
+                            } else if (e.getCode() == 217) {
                                 errMsg.setText("Invalid Username");
-                            }
-                            else if (e.getCode() == 218) {
+                            } else if (e.getCode() == 218) {
                                 errMsg.setText("Invalid Password");
-                            }
-                            else {
+                            } else {
                                 errMsg.setText(e.getMessage());
                             }
 
                         }
                     }
                 });
+
+                AVUser.getCurrentUser().put("energy", 3);
             }
         });
 
