@@ -10,7 +10,6 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <uses-feature
@@ -19,14 +18,16 @@
 
     <!-- 基础模块 END -->
     <application
-        android:name=".EnergyUp"
+        android:name=".ScanCodeActivity$EnergyUp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/CustomTheme"
         >
+
         <service android:name="com.avos.avoscloud.PushService"
             android:exported="true"/>
+
 
         <receiver android:name="com.avos.avoscloud.AVBroadcastReceiver" >
             <intent-filter>
@@ -39,6 +40,11 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".DisplayChargers"
@@ -46,7 +52,8 @@
         </activity>
         <activity
             android:name=".UserRegister"
-            android:label="@string/title_activity_user_register" >
+            android:label="@string/title_activity_user_register">
+
         </activity>
         <activity
             android:name=".UserLogin"
@@ -63,15 +70,24 @@
         <activity
             android:name=".BorrowChargerActivity"
             android:label="@string/title_activity_borrow_charger" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
 
         </activity>
         <activity
             android:name=".SendRequestActivity"
             android:label="@string/title_activity_send_request" >
+            android:name=".FinishTransactionActivity"
+            android:label="@string/title_activity_finish_transaction" >
+
+        </activity>
+        <activity
+            android:name=".ScanCodeActivity"
+            android:label="@string/title_activity_scan_code" >
+
+        </activity>
+        <activity
+            android:name=".QRCodeActivity"
+            android:label="@string/title_activity_qrcode" >
         </activity>
     </application>
 

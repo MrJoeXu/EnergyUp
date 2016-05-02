@@ -23,12 +23,20 @@ public class UserLogin extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_login);
 
+
+        AVUser currentUser = AVUser.getCurrentUser();
+        if (currentUser != null) {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         final EditText userEdit = (EditText)findViewById(R.id.username_login);
         final EditText passwordEdit = (EditText)findViewById(R.id.password_login);
         final TextView errMsg = (TextView)findViewById(R.id.logInErrMsg);
 
         final Button button = (Button) findViewById(R.id.btnSignUp);
-        final Intent displayIntent = new Intent(this, BorrowChargerActivity.class);
+        final Intent displayIntent = new Intent(this, MainActivity.class);
 
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -43,8 +51,10 @@ public class UserLogin extends Activity {
                     @Override
                     public void done(AVUser avUser, AVException e) {
                         if (e == null) {
+
                             errMsg.setText("Success!");
                             startActivity(displayIntent);
+                            finish();
                         } else {
                             errMsg.setText(e.getMessage());
                         }

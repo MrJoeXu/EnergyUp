@@ -42,7 +42,6 @@ import java.util.List;
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class DisplayMapContentFragment extends Fragment implements LocationListener {
 
-
     private LocationManager locationManager;
     double myLatitude;
     double myLongtitude;

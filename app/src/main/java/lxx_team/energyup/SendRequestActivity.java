@@ -75,25 +75,17 @@ public class SendRequestActivity extends Activity {
                 editDuration = (EditText) findViewById(R.id.edit_time_duration);
                 editEnergy = (EditText) findViewById(R.id.edit_spend_energy);
 
-                btnSubmit.setBackgroundColor(Color.parseColor("#3CCA79"));
-                btnSubmit.setTextColor(Color.parseColor("#ffffff"));
 
 
                 if (currentUser == null) { // Not login then direct to login
-                    btnSubmit.setBackgroundColor(Color.parseColor("#ffffff"));
-                    btnSubmit.setTextColor(Color.parseColor("#3CCA79"));
+
                     startActivity(intent);
                 } else if (timeDuration > maxDuration) {
-                    btnSubmit.setBackgroundColor(Color.parseColor("#ffffff"));
-                    btnSubmit.setTextColor(Color.parseColor("#3CCA79"));
+
                     errTextView.setText("You can only borrow a charger no more than 3 hours...");
                 } else if (editDuration.getText().toString().trim().length() == 0 || editEnergy.getText().toString().trim().length() == 0) {
-                    btnSubmit.setBackgroundColor(Color.parseColor("#ffffff"));
-                    btnSubmit.setTextColor(Color.parseColor("#3CCA79"));
                     errTextView.setText("Please enter required information!");
                 } else {
-                    btnSubmit.setBackgroundColor(Color.parseColor("#ffffff"));
-                    btnSubmit.setTextColor(Color.parseColor("#3CCA79"));
                     needEnergy = Integer.parseInt(editEnergy.getText().toString());
                     timeDuration = Integer.parseInt(editDuration.getText().toString());
                     submitRequest();
