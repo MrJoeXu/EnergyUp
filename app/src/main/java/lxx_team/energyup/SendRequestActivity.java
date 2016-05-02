@@ -76,7 +76,7 @@ public class SendRequestActivity extends Activity {
 
 
         // Move to MainActivity Later
-        PushService.setDefaultPushCallback(this, BorrowChargerActivity.class);
+        PushService.setDefaultPushCallback(this, RentTimer.class);
 
         final Button btnSubmit = (Button) findViewById(R.id.btn_submit_request);
         errTextView = (TextView) findViewById(R.id.request_error_text);
@@ -103,7 +103,9 @@ public class SendRequestActivity extends Activity {
 
                     errTextView.setText("Please enter required information!");
                 } else {
-                    //uploadInstallationId();
+
+                    uploadInstallationId();
+
                     needEnergy = Integer.parseInt(editEnergy.getText().toString());
                     timeDuration = Integer.parseInt(editDuration.getText().toString());
                     submitRequest();
@@ -125,7 +127,7 @@ public class SendRequestActivity extends Activity {
                     errTextView.setText("You don't have enough Energy!");
                 } else {
                     errTextView.setText("");
-                    Intent intent = new Intent(getApplicationContext(), DisplayChargers.class);
+                    Intent intent = new Intent(getApplicationContext(), BorrowTimer.class);
                     startActivity(intent);
                     queryChargers();
 
@@ -137,7 +139,6 @@ public class SendRequestActivity extends Activity {
 
     }
 
-    /*
 
     private void uploadInstallationId() {
         //Toast.makeText(getApplicationContext(),
@@ -158,7 +159,7 @@ public class SendRequestActivity extends Activity {
                 }
             }
         });
-    }*/
+    }
 
     private void queryChargers() {
 
@@ -207,10 +208,16 @@ public class SendRequestActivity extends Activity {
                             "FOUND!!!!", Toast.LENGTH_LONG).show();
                     String pushTarget = i.getString("installationID");
                     pushNotification(pushTarget);
+
                 }
             }
         });
     }
+
+
+
+
+
 
     private void pushNotification(String pushTarget) {
 
@@ -228,4 +235,3 @@ public class SendRequestActivity extends Activity {
 
 
 }
-

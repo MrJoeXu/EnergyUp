@@ -26,6 +26,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVGeoPoint;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
 
 import java.util.List;
@@ -68,13 +69,56 @@ public class DisplayListContentFragment extends Fragment implements LocationList
         Toast toast = Toast.makeText(context, s, duration);
         toast.show();
 
-
+        //user location and others
+        final boolean[] renterflag = {false};
         final AVGeoPoint userLocation = new AVGeoPoint(myLatitude, myLongtitude);
+        final String[] renterLoc = new String[1];
+
+        AVQuery avQuery = new AVQuery("Log");
+        avQuery.setLimit(1);
+        avQuery.whereEqualTo("borrower", AVUser.getCurrentUser().getEmail());
+        avQuery.findInBackground(new FindCallback<AVObject>() {
+
+            @Override
+            public void done (List < AVObject > list, AVException e){
+                if(e == null) {
+                    for (AVObject o : list) {
+                        renterLoc[0] = o.getString("renter");
+                    }
+                }
+                else{
+                    renterflag[0] = true;
+                }
+            }
+        });
+
+        if(renterflag[0]){
+            AVQuery aQuery = new AVQuery("Log");
+            aQuery.setLimit(1);
+            aQuery.whereEqualTo("renter", AVUser.getCurrentUser().getEmail());
+            aQuery.findInBackground(new FindCallback<AVObject>() {
+
+                @Override
+                public void done (List < AVObject > list, AVException e){
+                    if(e == null) {
+                        for (AVObject o : list) {
+                            renterLoc[0] = o.getString("borrower");
+                        }
+                    }
+                    else{
+                        renterflag[0] = true;
+                    }
+                }
+            });
+        }
+
         AVQuery<AVObject> query = new AVQuery<AVObject>("Location");
 
         query.whereNear("location", userLocation);
 
-        query.setLimit(0);
+        query.whereEqualTo("userId", renterLoc[0]);
+        query.setLimit(1);
+
         query.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {

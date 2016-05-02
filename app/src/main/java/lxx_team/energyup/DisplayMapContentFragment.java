@@ -27,6 +27,7 @@ import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVGeoPoint;
 import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -99,10 +100,54 @@ public class DisplayMapContentFragment extends Fragment implements LocationListe
         Bitmap b = bitmapdraw.getBitmap();
         final Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
+        final String[] renterLoc = new String[1];
+        final Boolean[] renterflag = {false};
+
+        //find the renter
+        AVQuery avQuery = new AVQuery("Log");
+        avQuery.setLimit(1);
+        avQuery.whereEqualTo("borrower", AVUser.getCurrentUser().getEmail());
+        avQuery.findInBackground(new FindCallback<AVObject>() {
+
+            @Override
+            public void done(List<AVObject> list, AVException e) {
+                if(e == null) {
+                    for (AVObject o : list) {
+                        renterLoc[0] = o.getString("renter");
+                    }
+                }
+                else{
+                    renterflag[0] = true;
+                }
+            }
+        });
+
+        //if not find the borrower
+        if(renterflag[0]){
+            AVQuery aQuery = new AVQuery("Log");
+            aQuery.setLimit(1);
+            aQuery.whereEqualTo("renter", AVUser.getCurrentUser().getEmail());
+            aQuery.findInBackground(new FindCallback<AVObject>() {
+
+                @Override
+                public void done (List < AVObject > list, AVException e){
+                    if(e == null) {
+                        for (AVObject o : list) {
+                            renterLoc[0] = o.getString("borrower");
+                        }
+                    }
+                    else{
+                        renterflag[0] = true;
+                    }
+                }
+            });
+        }
+
         final AVGeoPoint userLocation = new AVGeoPoint(myLatitude, myLongtitude);
         AVQuery<AVObject> query = new AVQuery<AVObject>("Location");
         query.whereNear("location", userLocation);
-        query.setLimit(3);
+        query.whereEqualTo("userId", renterLoc[0]);
+        query.setLimit(1);
 
         query.findInBackground(new FindCallback<AVObject>() {
             @Override

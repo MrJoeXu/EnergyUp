@@ -163,8 +163,8 @@
     <orderEntry type="library" exported="" name="play-services-gcm-8.4.0" level="project" />
     <orderEntry type="library" exported="" name="okio-1.6.0-leancloud" level="project" />
     <orderEntry type="library" exported="" name="mediarouter-v7-23.0.0" level="project" />
-    <orderEntry type="library" exported="" name="qq-sdk-1.6.1-leancloud" level="project" />
     <orderEntry type="library" exported="" name="protobuf-java-2.6.1" level="project" />
+    <orderEntry type="library" exported="" name="qq-sdk-1.6.1-leancloud" level="project" />
     <orderEntry type="library" exported="" name="avoscloud-feedback-v3.13.8" level="project" />
     <orderEntry type="library" exported="" name="multidex-1.0.1" level="project" />
     <orderEntry type="library" exported="" name="avoscloud-push-v3.13.8" level="project" />
