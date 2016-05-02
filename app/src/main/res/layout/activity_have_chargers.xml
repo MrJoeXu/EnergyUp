@@ -13,7 +13,7 @@
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="#EB3943"
+        android:background="@drawable/needcharger"
         android:id="@+id/borrow_charge_title"
         >
         <Button
@@ -23,12 +23,12 @@
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginRight="10dp"
-            android:background="#3CC175"/>
+            android:background="@drawable/back"/>
         <ImageView
             android:id="@+id/charger_icon"
             android:layout_width="35dp"
             android:layout_height="56dp"
-            android:background="#463CC1"
+            android:background="@drawable/charger"
             android:layout_marginTop="30dp"
             android:layout_centerHorizontal="true"/>
         <TextView
@@ -37,7 +37,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="35dp"
             android:gravity="center"
-            android:text="NEED A CHARGER?"
+            android:text="HAVE A CHARGER?"
             android:textColor="#fff"
             android:textSize="25sp"
             android:layout_below="@id/charger_icon"
@@ -72,8 +72,8 @@
                 <Button
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:background="#BFB4B2"
-                    android:drawableTop="@drawable/lighting"
+                    android:background="@color/secondary_background"
+                    android:drawableTop="@drawable/lightningicon"
                     android:drawingCacheQuality="high"
                     android:paddingTop="10dp"
                     android:textSize="10dp"
@@ -86,7 +86,7 @@
                 <Button
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:background="#BFB4B2"
+                    android:background="@color/secondary_background"
                     android:drawableTop="@drawable/pin"
                     android:drawingCacheQuality="high"
                     android:paddingTop="10dp"
@@ -103,10 +103,10 @@
                 <Button
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:drawableTop="@drawable/mini"
+                    android:drawableTop="@drawable/miniusb"
                     android:drawingCacheQuality="high"
                     android:paddingTop="10dp"
-                    android:background="#BFB4B2"
+                    android:background="@color/secondary_background"
                     android:shadowColor="#000000"
                     android:textSize="10dp"
                     android:textColor="#ffffff"
@@ -120,7 +120,7 @@
                 <Button
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:background="#BFB4B2"
+                    android:background="@color/secondary_background"
                     android:shadowColor="#000000"
                     android:textSize="10dp"
                     android:textColor="#ffffff"
@@ -129,7 +129,7 @@
                     android:id="@+id/btn_microusb"
                     android:layout_marginTop="30dp"
                     android:layout_below="@+id/btn_lighting"
-                    android:drawableTop="@drawable/micro"
+                    android:drawableTop="@drawable/microusb"
                     android:drawingCacheQuality="high"
                     android:paddingTop="15dp"
                     android:clickable="true"
@@ -137,7 +137,7 @@
                 <Button
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:background="#BFB4B2"
+                    android:background="@color/secondary_background"
                     android:shadowColor="#000000"
                     android:textSize="10dp"
                     android:textColor="#ffffff"
@@ -174,7 +174,7 @@
                 <Button
                     android:layout_width="90dp"
                     android:layout_height="90dp"
-                    android:background="#BFB4B2"
+                    android:background="@color/secondary_background"
                     android:shadowColor="#000000"
                     android:textSize="10dp"
                     android:textColor="#ffffff"

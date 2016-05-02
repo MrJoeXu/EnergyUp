@@ -60,24 +60,39 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numStars="5"
+<<<<<<< HEAD
         android:layout_below="@id/rating_header"
         android:layout_centerHorizontal="true"
         android:id="@+id/rating_bar" />
+=======
+        android:id="@+id/rating_bar"
+        android:layout_above="@+id/submit_rate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="46dp" />
+>>>>>>> before merge
 
     <TextView
         android:id="@+id/avg_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:text="4.3"
         android:layout_centerHorizontal="true"
         android:textSize="70dp"
         android:textColor="#ffffff"
         android:layout_below="@id/rating_bar"/>
 
+=======
+        android:id="@+id/submit_rate"
+        android:text = "SUBMIT"
+        android:layout_above="@+id/avg_rating"
+        android:layout_centerHorizontal="true" />
+>>>>>>> before merge
     <TextView
         android:id="@+id/text_average_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:layout_below="@id/avg_rating"
         android:text="average rating"
         android:layout_marginLeft="20dp"
@@ -99,5 +114,13 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/text_average_rating" />
 
+=======
+        android:id="@+id/avg_rating"
+        android:text="no user found"
+        android:layout_marginBottom="176dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/submit_rate"
+        android:layout_alignStart="@+id/submit_rate" />
+>>>>>>> before merge
 
 </RelativeLayout>
