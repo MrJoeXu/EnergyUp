@@ -1,31 +1,103 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_height="match_parent"
     tools:context="lxx_team.energyup.FinishTransactionActivity"
     >
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/primary"
+        android:id="@+id/finish_title">
+
+        <Button
+            android:id="@+id/send_request_back"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/back"/>
+
+        <ImageView
+            android:id="@+id/charger_icon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+
+            android:background="@drawable/check"
+            android:layout_marginTop="25dp"
+            android:layout_centerHorizontal="true"/>
+
+
+        <TextView
+            android:id="@+id/send_request_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:text="Thank You!"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:layout_below="@id/charger_icon"
+            android:fontFamily="sans-serif-light" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/rating_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/finish_title"
+        android:text="Rate Your Experience"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="30dp"
+        android:textColor="@color/secondary_title_color" />
 
     <RatingBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:numStars="5"
-        android:id="@+id/rating_bar"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@id/rating_header"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/rating_bar" />
+
+    <TextView
+        android:id="@+id/avg_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="4.3"
+        android:layout_centerHorizontal="true"
+        android:textSize="70dp"
+        android:textColor="#ffffff"
+        android:layout_below="@id/rating_bar"/>
+
+    <TextView
+        android:id="@+id/text_average_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/avg_rating"
+        android:text="average rating"
+        android:layout_marginLeft="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:textColor="@color/secondary_title_color" />
+
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/submit_rate"
-        android:text = "SUBMIT"
-        android:layout_below="@+id/rating_bar"
-        android:layout_centerHorizontal="true" />
-    <TextView
-        android:layout_width="wrap_content"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="@color/primary"
+        android:textColor="#ffffff"
+        android:fontFamily="sans-serif-light"
         android:layout_height="wrap_content"
-        android:id="@+id/avg_rating"
-        android:text="no user found"/>
+        android:layout_width="180dp"
+        android:text="submit"
+        android:onClick="selfDestruct"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/text_average_rating" />
+
 
 </RelativeLayout>

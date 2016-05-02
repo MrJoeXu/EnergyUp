@@ -28,6 +28,8 @@ public class UserRegister extends Activity {
         final EditText nameEdit = (EditText)findViewById(R.id.username);
         final EditText emailEdit = (EditText)findViewById(R.id.email_address);
         final EditText passwordEdit = (EditText)findViewById(R.id.password);
+        final EditText phoneNumEdit = (EditText)findViewById(R.id.phone_num);
+
         final TextView errMsg = (TextView)findViewById(R.id.signUpErrMsg);
 
         final Button button = (Button) findViewById(R.id.btnSignUp);
@@ -37,11 +39,13 @@ public class UserRegister extends Activity {
                 final String username = nameEdit.getText().toString();
                 String email = emailEdit.getText().toString();
                 String password = passwordEdit.getText().toString();
+                String phone = phoneNumEdit.getText().toString();
 
                 final AVUser user = new AVUser();
                 user.setUsername(username);
                 user.setEmail(email);
                 user.setPassword(password);
+                user.setMobilePhoneNumber(phone);
 
                 user.signUpInBackground(new SignUpCallback() {
                     @Override
@@ -49,6 +53,9 @@ public class UserRegister extends Activity {
                         if (e == null) {
                             Log.d("App", "Sign Up Success!");
                             errMsg.setText("Success!");
+                            Intent i = new Intent(UserRegister.this,MainActivity.class);
+                            startActivity(i);
+                            finish();
 
                         } else {
                             Log.d("App", "Error: " + e.getMessage());
@@ -69,9 +76,6 @@ public class UserRegister extends Activity {
                     }
                 });
 
-                Intent i = new Intent(UserRegister.this,QRCodeActivity.class);
-                startActivity(i);
-                finish();
 
             }
         });

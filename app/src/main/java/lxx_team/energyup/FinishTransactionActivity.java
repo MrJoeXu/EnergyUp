@@ -58,7 +58,7 @@ public class FinishTransactionActivity extends Activity {
             @Override
             public void onClick(View v) {
                 submitRating("yx");
-                Intent mainIntent = new Intent(FinishTransactionActivity.this, MainActivity.class);
+                Intent mainIntent = new Intent(FinishTransactionActivity.this, UserLogin.class);
                 startActivity(mainIntent);
                 finish();
             }
@@ -107,7 +107,7 @@ public class FinishTransactionActivity extends Activity {
                 if (e == null) {
                     //int urate = (int) avUser.get("value");
                     Toast.makeText(FinishTransactionActivity.this, "User found", Toast.LENGTH_LONG);
-                    avgRating.setText("User" + uname + "rating is:" + avUser.get("value"));
+                    avgRating.setText("" + avUser.get("value"));
                 } else {
                     //e.printStackTrace();
                     Toast.makeText(FinishTransactionActivity.this, "User not found", Toast.LENGTH_LONG);

@@ -1,26 +1,76 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+    android:layout_height="match_parent"
+    android:padding="0dp"
+    tools:context=".MainActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I need a charger"
-        android:id="@+id/request_button"
-        android:layout_centerVertical="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/secondary_background"
+        android:id="@+id/borrow_charge_title">
 
-    <Button
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="35dp"
+            android:layout_centerVertical="true"
+            android:text="ENERGY UP"
+            android:textColor="@color/primary"
+            android:textSize="25sp"
+            android:fontFamily="sans-serif-bold"
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="I have a charger"
-        android:id = "@+id/post_button"
-        android:layout_alignTop="@+id/request_button"
-        android:layout_toRightOf="@+id/request_button"
-        android:layout_toEndOf="@+id/request_button" />
+        android:layout_height="match_parent"
+        android:layout_centerHorizontal="true">
+
+        <Button
+            android:id="@+id/request_button"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/btnneedcharger">
+        </Button>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:background="@drawable/btnhavecharger"
+            android:layout_marginTop="150dp"
+            android:id = "@+id/post_button"
+            android:layout_toRightOf="@+id/request_button"/>
+
+        <ImageView
+            android:id="@+id/energy_bar"
+            android:layout_width="320dp"
+            android:layout_height="134dp"
+            android:src="@drawable/currentenergy"
+            android:layout_below="@+id/request_button"
+            android:layout_marginTop="30dp"
+            />
+
+        <TextView
+            android:id="@+id/num_energy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:layout_below="@id/request_button"
+            android:textSize="65dp"
+            android:fontFamily="sans-serif-black"
+            android:textColor="@color/primary"
+            android:layout_marginTop="43dp"
+            android:layout_marginLeft="160dp"
+            />
+
+    </RelativeLayout>
+
+
 
 </RelativeLayout>

@@ -53,16 +53,11 @@
             android:name=".UserRegister"
             android:label="@string/title_activity_user_register">
 
+
         </activity>
         <activity
             android:name=".UserLogin"
             android:label="@string/title_activity_user_login" >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
 
@@ -82,8 +77,16 @@
         <activity
             android:name=".SendRequestActivity"
             android:label="@string/title_activity_send_request" >
+        </activity>
+
+        <activity
             android:name=".FinishTransactionActivity"
             android:label="@string/title_activity_finish_transaction" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
         <activity
