@@ -22,11 +22,10 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/CustomTheme"
-        >
-
-        <service android:name="com.avos.avoscloud.PushService"
-            android:exported="true"/>
+        android:theme="@style/CustomTheme" >
+        <service
+            android:name="com.avos.avoscloud.PushService"
+            android:exported="true" />
 
         <receiver android:name="com.avos.avoscloud.AVBroadcastReceiver" >
             <intent-filter>
@@ -39,7 +38,6 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
-
         </activity>
         <activity
             android:name=".HaveChargers"
@@ -51,18 +49,21 @@
         </activity>
         <activity
             android:name=".UserRegister"
-            android:label="@string/title_activity_user_register">
-
+            android:label="@string/title_activity_user_register" >
         </activity>
         <activity
             android:name=".UserLogin"
             android:label="@string/title_activity_user_login" >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
 
         </activity>
 
@@ -76,20 +77,18 @@
         <activity
             android:name=".BorrowChargerActivity"
             android:label="@string/title_activity_borrow_charger" >
-
-
         </activity>
         <activity
             android:name=".SendRequestActivity"
             android:label="@string/title_activity_send_request" >
+        </activity>
+        <activity
             android:name=".FinishTransactionActivity"
             android:label="@string/title_activity_finish_transaction" >
-
         </activity>
         <activity
             android:name=".ScanCodeActivity"
             android:label="@string/title_activity_scan_code" >
-
         </activity>
         <activity
             android:name=".QRCodeActivity"
@@ -100,7 +99,29 @@
             android:name=".LocationUpdateService"
             android:exported="false" >
         </service>
-    </application>
 
+        <activity
+            android:name=".BorrowTimer"
+            android:label="@string/title_activity_borrow_timer" >
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
+        <activity
+            android:name=".FinishBorrow"
+            android:label="@string/title_activity_finish_borrow" >
+        </activity>
+        <activity
+            android:name=".AcceptRequest"
+            android:label="@string/title_activity_accept_request" >
+        </activity>
+        <activity
+            android:name=".RentTimer"
+            android:label="@string/title_activity_rent_timer" >
+        </activity>
+    </application>
 
 </manifest>

@@ -23,5 +23,9 @@
     <string name="title_activity_scan_code">ScanCodeActivity</string>
     <string name="title_activity_qrcode">QRCodeActivity</string>
     <string name="title_activity_have_chargers">HaveChargers</string>
+    <string name="title_activity_borrow_timer">BorrowTimer</string>
+    <string name="title_activity_finish_borrow">FinishBorrow</string>
+    <string name="title_activity_accept_request">AcceptRequest</string>
+    <string name="title_activity_rent_timer">RentTimer</string>
 
 </resources>
