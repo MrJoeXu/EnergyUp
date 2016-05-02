@@ -152,8 +152,8 @@
     <orderEntry type="library" exported="" name="okhttp-2.6.0-leancloud" level="project" />
     <orderEntry type="library" exported="" name="play-services-ads-8.4.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-appinvite-8.4.0" level="project" />
-    <orderEntry type="library" exported="" name="avoscloud-sdk-v3.13.8" level="project" />
     <orderEntry type="library" exported="" name="avoscloud-statistics-v3.13.8" level="project" />
+    <orderEntry type="library" exported="" name="avoscloud-sdk-v3.13.8" level="project" />
     <orderEntry type="library" exported="" name="support-v4-24.0.0-alpha1" level="project" />
     <orderEntry type="library" exported="" name="play-services-safetynet-8.4.0" level="project" />
     <orderEntry type="library" exported="" name="play-services-appstate-8.4.0" level="project" />

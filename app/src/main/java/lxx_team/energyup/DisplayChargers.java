@@ -45,13 +45,9 @@ public class DisplayChargers extends Activity implements LocationListener{
     double myLongtitude;
     private boolean mapMode = false;
 
-
-
     protected Button btnSwitch;
     private DisplayListContentFragment fList;
     private DisplayMapContentFragment fMap;
-
-
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -159,7 +155,5 @@ public class DisplayChargers extends Activity implements LocationListener{
     public void onProviderDisabled(String provider) {
 
     }
-
-
 
 }

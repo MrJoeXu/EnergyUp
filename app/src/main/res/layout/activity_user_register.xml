@@ -39,6 +39,7 @@
         android:onClick="selfDestruct"
         android:layout_below="@+id/password"/>
 
+
     <TextView
         android:id="@+id/signUpErrMsg"
         android:layout_width="wrap_content"

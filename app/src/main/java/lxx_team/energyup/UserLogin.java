@@ -38,7 +38,6 @@ public class UserLogin extends Activity {
         final Button button = (Button) findViewById(R.id.btnSignUp);
         final Intent displayIntent = new Intent(this, MainActivity.class);
 
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +50,6 @@ public class UserLogin extends Activity {
                     @Override
                     public void done(AVUser avUser, AVException e) {
                         if (e == null) {
-
                             errMsg.setText("Success!");
                             startActivity(displayIntent);
                             finish();
@@ -60,6 +58,17 @@ public class UserLogin extends Activity {
                         }
                     }
                 });
+            }
+        });
+
+
+        final Button button1 = (Button) findViewById(R.id.btnRegister);
+        final Intent signupIntent = new Intent(this, UserRegister.class);
+
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(signupIntent);
             }
         });
     }

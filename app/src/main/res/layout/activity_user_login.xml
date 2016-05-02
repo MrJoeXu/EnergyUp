@@ -30,6 +30,13 @@
         android:text="@string/login"
         android:layout_below="@+id/password_login"/>
 
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text = "New User"
+        android:id="@+id/btnRegister"/>
+
     <TextView
         android:id="@+id/logInErrMsg"
         android:layout_width="wrap_content"

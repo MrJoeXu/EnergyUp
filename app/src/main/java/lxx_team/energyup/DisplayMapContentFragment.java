@@ -96,7 +96,7 @@ public class DisplayMapContentFragment extends Fragment implements LocationListe
         int height = 140;
         int width = 100;
         BitmapDrawable bitmapdraw=(BitmapDrawable)getResources().getDrawable(R.drawable.marker);
-        Bitmap b=bitmapdraw.getBitmap();
+        Bitmap b = bitmapdraw.getBitmap();
         final Bitmap smallMarker = Bitmap.createScaledBitmap(b, width, height, false);
 
         final AVGeoPoint userLocation = new AVGeoPoint(myLatitude, myLongtitude);

@@ -69,16 +69,12 @@ public class SendRequestActivity extends Activity {
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             Intent intent = new Intent(getApplicationContext(), UserLogin.class);
 
-
             public void onClick(View v) {
 
                 editDuration = (EditText) findViewById(R.id.edit_time_duration);
                 editEnergy = (EditText) findViewById(R.id.edit_spend_energy);
 
-
-
                 if (currentUser == null) { // Not login then direct to login
-
                     startActivity(intent);
                 } else if (timeDuration > maxDuration) {
 
