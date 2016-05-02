@@ -19,7 +19,7 @@
 
     <!-- 基础模块 END -->
     <application
-        android:name=".EnergyUp"
+        android:name=".ScanCodeActivity$EnergyUp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -44,12 +44,12 @@
         </activity>
         <activity
             android:name=".UserRegister"
-            android:label="@string/title_activity_user_register" >
+            android:label="@string/title_activity_user_register">
+
         </activity>
         <activity
             android:name=".UserLogin"
             android:label="@string/title_activity_user_login" >
-
         </activity>
 
         <meta-data
@@ -62,14 +62,22 @@
         <activity
             android:name=".FinishTransactionActivity"
             android:label="@string/title_activity_finish_transaction" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+
         </activity>
         <activity
             android:name=".ScanCodeActivity"
             android:label="@string/title_activity_scan_code" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".QRCodeActivity"
+            android:label="@string/title_activity_qrcode" >
+
+
         </activity>
     </application>
 
