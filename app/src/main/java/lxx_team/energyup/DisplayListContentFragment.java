@@ -71,9 +71,10 @@ public class DisplayListContentFragment extends Fragment implements LocationList
 
         final AVGeoPoint userLocation = new AVGeoPoint(myLatitude, myLongtitude);
         AVQuery<AVObject> query = new AVQuery<AVObject>("Location");
-        query.whereNear("location", userLocation);
-        query.setLimit(3);
 
+        query.whereNear("location", userLocation);
+
+        query.setLimit(0);
         query.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
@@ -95,6 +96,7 @@ public class DisplayListContentFragment extends Fragment implements LocationList
                 }
             }
         });
+
         return inflater.inflate(R.layout.fragment_display_list_content, container, false);
 
     }

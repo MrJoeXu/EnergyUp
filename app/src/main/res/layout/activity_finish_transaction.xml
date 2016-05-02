@@ -12,20 +12,25 @@
         android:layout_height="wrap_content"
         android:numStars="5"
         android:id="@+id/rating_bar"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_above="@+id/submit_rate"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="46dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/submit_rate"
         android:text = "SUBMIT"
-        android:layout_below="@+id/rating_bar"
+        android:layout_above="@+id/avg_rating"
         android:layout_centerHorizontal="true" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/avg_rating"
-        android:text="no user found"/>
+        android:text="no user found"
+        android:layout_marginBottom="176dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/submit_rate"
+        android:layout_alignStart="@+id/submit_rate" />
 
 </RelativeLayout>
