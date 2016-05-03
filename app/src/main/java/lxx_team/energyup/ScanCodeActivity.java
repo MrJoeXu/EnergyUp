@@ -56,12 +56,16 @@ public class ScanCodeActivity extends Activity {
     protected void onActivityResult(int requestCode, int resultCode,Intent data){
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode,resultCode,data);
         if (result != null){
+            Intent requestIntent = new Intent(ScanCodeActivity.this, FinishTransactionActivity.class);
+            startActivity(requestIntent);
+
             if(result.getContents() == null) {
                 Log.d("MainActivity","Cancelled Scan");
                 Toast.makeText(this,"Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 Log.d("MainActivity", "Scanned");
                 Toast.makeText(this,"Scanned: "+result.getContents(),Toast.LENGTH_LONG).show();
+
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);

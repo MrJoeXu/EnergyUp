@@ -76,11 +76,14 @@ public class SendRequestActivity extends Activity {
 
 
         // Move to MainActivity Later
-        PushService.setDefaultPushCallback(this, RentTimer.class);
+        PushService.setDefaultPushCallback(this, DisplayChargers.class);
 
         final Button btnSubmit = (Button) findViewById(R.id.btn_submit_request);
-        errTextView = (TextView) findViewById(R.id.request_error_text);
+        errTextView = (TextView)findViewById(R.id.request_error_text);
         currentUser = AVUser.getCurrentUser();
+
+
+
 
 
         btnSubmit.setOnClickListener(new View.OnClickListener() {
@@ -103,9 +106,7 @@ public class SendRequestActivity extends Activity {
 
                     errTextView.setText("Please enter required information!");
                 } else {
-
                     uploadInstallationId();
-
                     needEnergy = Integer.parseInt(editEnergy.getText().toString());
                     timeDuration = Integer.parseInt(editDuration.getText().toString());
                     submitRequest();
@@ -140,9 +141,10 @@ public class SendRequestActivity extends Activity {
     }
 
 
+
     private void uploadInstallationId() {
         //Toast.makeText(getApplicationContext(),
-               // currentUser.getEmail().toString(), Toast.LENGTH_LONG).show();
+        // currentUser.getEmail().toString(), Toast.LENGTH_LONG).show();
         AVQuery<AVObject> targetUser = new AVQuery<>("Inventory");
         targetUser.whereEqualTo("userId", currentUser.getEmail().toString());
         LogUtil.log.d(currentUser.getEmail());
@@ -208,16 +210,10 @@ public class SendRequestActivity extends Activity {
                             "FOUND!!!!", Toast.LENGTH_LONG).show();
                     String pushTarget = i.getString("installationID");
                     pushNotification(pushTarget);
-
                 }
             }
         });
     }
-
-
-
-
-
 
     private void pushNotification(String pushTarget) {
 

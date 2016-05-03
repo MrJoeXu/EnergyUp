@@ -6,4 +6,32 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.google.android.gms.maps.MapFragment"/>
+    <Button
+        android:id="@+id/verify_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="#F1524B"
+        android:textColor="#ffffff"
+        android:fontFamily="sans-serif-light"
+        android:layout_height="70dp"
+        android:layout_width="70dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="290dp"
+        android:text="verifiy"
+        android:textSize="12dp"
+        android:onClick="selfDestruct"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:id="@+id/call_btn"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:background="@color/primary"
+        android:textColor="#ffffff"
+        android:fontFamily="sans-serif-light"
+        android:layout_marginTop="250dp"
+        android:layout_height="70dp"
+        android:layout_width="70dp"
+        android:textSize="12dp"
+        android:text="Call"
+        android:onClick="selfDestruct"
+        android:layout_centerHorizontal="true" />
 </FrameLayout>

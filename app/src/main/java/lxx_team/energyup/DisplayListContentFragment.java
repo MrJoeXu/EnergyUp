@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -18,6 +19,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -129,7 +131,7 @@ public class DisplayListContentFragment extends Fragment implements LocationList
 
                         double distance = o.getAVGeoPoint("location").distanceInMilesTo(userLocation);
                         double rounded = (double) Math.round(distance * 100.0) / 100.0;
-                        String strDistance = rounded + "  miles";
+                        String strDistance = rounded + "";
                         RelativeLayout layout = (RelativeLayout) getActivity().findViewById(R.id.fragment_display_list);
                         TextView tv = (TextView) layout.getChildAt(counter);
                         tv.setText(strDistance);
@@ -145,6 +147,27 @@ public class DisplayListContentFragment extends Fragment implements LocationList
 
     }
 
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+
+        final Button verify = (Button) getActivity().findViewById(R.id.verify_btn);
+
+
+        verify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AVUser currentUser = AVUser.getCurrentUser();
+                if (currentUser.getEmail() == "jj@163.com") {
+                    Intent requestIntent = new Intent(getActivity(), ScanCodeActivity.class);
+                    startActivity(requestIntent);
+                }
+                else {
+                    Intent requestIntent = new Intent(getActivity(), QRCodeActivity.class);
+                    startActivity(requestIntent);
+                }
+            }
+        });
+    }
 
 
 

@@ -13,14 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
 
-import com.avos.avoscloud.AVException;
-import com.avos.avoscloud.AVObject;
-import com.avos.avoscloud.AVQuery;
-import com.avos.avoscloud.AVUser;
-import com.avos.avoscloud.GetCallback;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -35,16 +28,12 @@ public class MainActivity extends Activity implements LocationListener,
 
     private Intent mIntentService;
     private PendingIntent mPendingIntent;
-    private AVUser currentUser;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        currentUser = AVUser.getCurrentUser();
-        setNumEnergy();
 
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -160,24 +149,6 @@ public class MainActivity extends Activity implements LocationListener,
         } else {
             // Google Play services has no idea how to fix the issue
         }
-    }
-
-
-    private void setNumEnergy() {
-        String email = currentUser.getEmail();
-        final AVQuery<AVObject> query = new AVQuery<>("_User");
-        query.whereEqualTo("email", email);
-        query.getFirstInBackground(new GetCallback<AVObject>() {
-            public void done(AVObject avObject, AVException e) {
-                int userEnergy = avObject.getInt("energy");
-
-                TextView num = (TextView) findViewById(R.id.num_energy);
-                String result = "" + userEnergy;
-                num.setText(result);
-
-            }
-        });
-
     }
 
 }

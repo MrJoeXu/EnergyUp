@@ -5,6 +5,7 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -20,6 +21,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -167,6 +169,18 @@ public class DisplayMapContentFragment extends Fragment implements LocationListe
         });
 
      //   getActivity().findViewById(R.id.id_title_right_btn).setBackgroundResource(R.drawable.l);
+
+        final Button verify = (Button) getActivity().findViewById(R.id.verify_btn);
+
+
+        verify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent requestIntent = new Intent(getActivity(), ScanCodeActivity.class);
+                startActivity(requestIntent);
+
+            }
+        });
     }
 
     @Override
