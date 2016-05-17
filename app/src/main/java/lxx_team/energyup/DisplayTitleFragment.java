@@ -28,9 +28,7 @@ public class DisplayTitleFragment extends Fragment
             @Override
             public void onClick(View v)
             {
-                Toast.makeText(getActivity(),
-                        "i am an ImageButton in TitleFragment ! ",
-                        Toast.LENGTH_SHORT).show();
+
             }
         });
         return view;

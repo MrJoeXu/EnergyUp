@@ -7,9 +7,17 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.view.View.OnClickListener;
 
+import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.FindCallback;
+import com.avos.avoscloud.GetCallback;
+
+import java.util.List;
 
 public class AcceptRequest extends Activity {
 
@@ -18,7 +26,6 @@ public class AcceptRequest extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accept_request);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -42,16 +49,56 @@ public class AcceptRequest extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
+    AVUser thisUser = AVUser.getCurrentUser();
+    String email = thisUser.getEmail();
+    public boolean flag;
+
     //post the id to the server
     public void acceptPost(View v){
-        AVUser thisUser = AVUser.getCurrentUser();
-        String email = thisUser.getEmail();
 
-        AVObject message = new AVObject("Log");
-        message.put("renter",email);
+        int counter = 1;
 
-        //转到一个页面？或者等信号
-        final Intent displayIntent = new Intent(this, BorrowTimer.class);
+        flag = false;
+
+        while(flag == false && counter < 6) {
+            AVQuery query = new AVQuery("Log");
+            query.whereEqualTo("receiver" + counter, email);
+            query.orderByDescending("updateAt");
+            query.setLimit(1);
+
+            //AVQuery query = new AVQuery("Log");
+            query.getFirstInBackground(new GetCallback<AVObject>() {
+                @Override
+                public void done(AVObject avObject, AVException e) {
+                    if (avObject != null) {
+                        if (avObject.getString("renter") == null || avObject.getString("renter").equals("") || avObject.getString("renter").equals("ll@lll.com") ) {
+                            flag = true;
+                            avObject.put("renter", email);
+                            avObject.saveInBackground();
+
+                            final Intent displayIntent = new Intent(getBaseContext(), DisplayChargers.class);
+                            startActivity(displayIntent);
+
+                            finish();
+                        }
+                    }
+                }
+
+
+            });
+
+            counter++;
+        }
+
+            final Intent displayIntent = new Intent(this, MainActivity.class);
+            startActivity(displayIntent);
+
+            finish();
+        }
+
+
+    public void denyPost(View v){
+        final Intent displayIntent = new Intent(this, MainActivity.class);
         startActivity(displayIntent);
 
         finish();

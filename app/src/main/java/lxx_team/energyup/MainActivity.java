@@ -104,8 +104,8 @@ public class MainActivity extends Activity implements LocationListener,
     @Override
     public void onConnected(Bundle bundle) {
         LocationRequest request = new LocationRequest()
-                .setInterval(4000) // Every 1 seconds
-                .setExpirationDuration(60 * 1000) // Next 60 seconds
+                .setInterval(1000 * 120) // Every 2 minutes
+                //.setExpirationDuration(1000 * 60 * 90) //
                 .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
 
         Intent intent = new Intent(this, LocationUpdateService.class);

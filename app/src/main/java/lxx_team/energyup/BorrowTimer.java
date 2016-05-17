@@ -22,13 +22,14 @@ import com.avos.avoscloud.AVObject;
 import com.avos.avoscloud.AVQuery;
 import com.avos.avoscloud.AVUser;
 import com.avos.avoscloud.FindCallback;
+import com.avos.avoscloud.GetCallback;
 
 import java.io.IOException;
 import java.util.List;
 
 public class BorrowTimer extends Activity {
 
-    private int recLen = 15;
+    private int recLen = 10;
     private TextView txtView;
     BorrowTimer thistimer = this;
 
@@ -40,7 +41,8 @@ public class BorrowTimer extends Activity {
         setContentView(R.layout.activity_borrow_timer);
         txtView = (TextView)findViewById(R.id.txttime);
 
-
+        String s = String.format("%02d:%02d",recLen/60, recLen%60);
+        txtView.setText(s);
         handler.postDelayed(runnable, 1000);
     }
 
@@ -58,37 +60,46 @@ public class BorrowTimer extends Activity {
         public void run() {
             currentThread = Thread.currentThread();
             recLen--;
+            String s = String.format("%02d:%02d",recLen/60, recLen%60);
+            txtView.setText(s);
+            handler.postDelayed(this, 1000);
             if(recLen < 1){
 
-                //get the lastest update
-                AVQuery query = new AVQuery("Log");
-                query.orderByDescending("updateAt");
-                query.setLimit(1);
 
 
-                query.findInBackground(new FindCallback<AVObject>() {
+                //go to the tracking page
+                final Intent displayIntent = new Intent(thistimer, DisplayChargers.class);
+                startActivity(displayIntent);
+                handler.removeCallbacks(runnable);
+                //finish();
+                /**
+
+                 query.findInBackground(new FindCallback<AVObject>() {
                     @Override
                     public void done(List<AVObject> list, AVException e) {
-                        if (e == null) {
+                        Toast.makeText(BorrowTimer.this, "Display Charger", Toast.LENGTH_SHORT).show();
+                        //go to the tracking page
+                        final Intent displayIntent = new Intent(BorrowTimer.this, DisplayChargers.class);
+                        startActivity(displayIntent);
+                        handler.removeCallbacks(runnable);
+                        BorrowTimer.this.finish();
+                        /**
+                        if (list != null && list.size() != 0) {
                             for (AVObject o : list) {
                                 //if we found the user
                                 String s = o.getString("renter");
-                                o.deleteInBackground();
-                                AVObject logs = new AVObject("Log");
-                                logs.put("renter", s);
-                                logs.put("borrower", AVUser.getCurrentUser().getEmail());
-                                logs.saveInBackground();
-
-                                //go to the tracking page
-                                final Intent displayIntent = new Intent(thistimer, DisplayChargers.class);
-                                startActivity(displayIntent);
-                                handler.removeCallbacks(runnable);
-                                finish();
-
+                                if (o != null) {
+                                    Toast.makeText(BorrowTimer.this, "Display Charger", Toast.LENGTH_SHORT).show();
+                                    //go to the tracking page
+                                    final Intent displayIntent = new Intent(thistimer, DisplayChargers.class);
+                                    startActivity(displayIntent);
+                                    handler.removeCallbacks(runnable);
+                                    finish();
+                                }
                             }
                         } else {
                             Log.d("App", "Error: " + e.getMessage());
-
+                            Toast.makeText(BorrowTimer.this, "Go back to Main", Toast.LENGTH_SHORT).show();
                             //go to the main page
                             final Intent displayIntent = new Intent(thistimer, MainActivity.class);
                             startActivity(displayIntent);
@@ -97,11 +108,13 @@ public class BorrowTimer extends Activity {
 
                         }
                     }
-                });
+                         */
+
+
+
+              /*  Toast.makeText(BorrowTimer.this, "after", Toast.LENGTH_SHORT).show();*/
             }
-            String s = String.format("%02d:%02d",recLen/60, recLen%60);
-            txtView.setText(s);
-            handler.postDelayed(this, 1000);
+
         }
 
     };

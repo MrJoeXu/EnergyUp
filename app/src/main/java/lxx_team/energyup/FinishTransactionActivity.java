@@ -106,11 +106,11 @@ public class FinishTransactionActivity extends Activity {
             public void done(AVObject avUser, AVException e) {
                 if (e == null) {
                     //int urate = (int) avUser.get("value");
-                    Toast.makeText(FinishTransactionActivity.this, "User found", Toast.LENGTH_LONG);
+                    //Toast.makeText(FinishTransactionActivity.this, "User found", Toast.LENGTH_LONG);
                     avgRating.setText("" + avUser.get("value"));
                 } else {
                     //e.printStackTrace();
-                    Toast.makeText(FinishTransactionActivity.this, "User not found", Toast.LENGTH_LONG);
+                    //Toast.makeText(FinishTransactionActivity.this, "User not found", Toast.LENGTH_LONG);
                 }
             }
         });
@@ -138,11 +138,11 @@ public class FinishTransactionActivity extends Activity {
                         }
                     });
                     //Log.d("test","success test"+rating);
-                    Toast.makeText(FinishTransactionActivity.this, "User Updated", Toast.LENGTH_LONG);
+                    //Toast.makeText(FinishTransactionActivity.this, "User Updated", Toast.LENGTH_LONG);
                     //avgRating.setText("User"+uname+"rating is:"+urate);
                 } else {
                     //e.printStackTrace();
-                    Toast.makeText(FinishTransactionActivity.this, "User not found", Toast.LENGTH_LONG);
+                    //Toast.makeText(FinishTransactionActivity.this, "User not found", Toast.LENGTH_LONG);
                 }
             }
         });

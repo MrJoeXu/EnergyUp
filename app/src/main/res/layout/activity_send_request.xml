@@ -14,15 +14,6 @@
         android:background="@color/primary"
         android:id="@+id/send_request_title">
 
-        <Button
-            android:id="@+id/send_request_back"
-            android:layout_marginTop="15dp"
-            android:layout_marginLeft="10dp"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/back"/>
-
         <ImageView
             android:id="@+id/charger_icon"
             android:layout_width="25dp"

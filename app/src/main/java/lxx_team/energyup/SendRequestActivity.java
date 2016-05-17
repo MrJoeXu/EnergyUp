@@ -39,7 +39,7 @@ public class SendRequestActivity extends Activity {
     EditText editDuration, editEnergy;
     String insId;
     int requestDevice;
-
+    String chargerType = "";
 
 
 
@@ -76,7 +76,7 @@ public class SendRequestActivity extends Activity {
 
 
         // Move to MainActivity Later
-        PushService.setDefaultPushCallback(this, DisplayChargers.class);
+        PushService.setDefaultPushCallback(this, AcceptRequest.class);
 
         final Button btnSubmit = (Button) findViewById(R.id.btn_submit_request);
         errTextView = (TextView)findViewById(R.id.request_error_text);
@@ -106,7 +106,7 @@ public class SendRequestActivity extends Activity {
 
                     errTextView.setText("Please enter required information!");
                 } else {
-                    uploadInstallationId();
+                    //uploadInstallationId();
                     needEnergy = Integer.parseInt(editEnergy.getText().toString());
                     timeDuration = Integer.parseInt(editDuration.getText().toString());
                     submitRequest();
@@ -163,56 +163,107 @@ public class SendRequestActivity extends Activity {
         });
     }
 
+    AVObject message = new AVObject("Log");
+
     private void queryChargers() {
 
+        AVUser thisUser = AVUser.getCurrentUser();
+        String email = thisUser.getEmail();
+
+        //query inventory-find myself
+        AVQuery<AVObject> mquery = new AVQuery<>("Inventory");
+        //query inventory-find others
         AVQuery<AVObject> query = new AVQuery<>("Inventory");
+
+
+        //find myself
+        mquery.whereEqualTo("userId", email);
+        mquery.setLimit(3);
+
+        mquery.findInBackground(new FindCallback<AVObject>() {
+            @Override
+
+            public void done(List<AVObject> list, AVException e) {
+
+                for (AVObject i : list) {
+                    i.deleteInBackground();
+                }
+            }
+        });
+
+        //set myself to have nothing
+        AVObject myself = new AVObject("Inventory");
+        myself.put("userId", email);
+        //for testing
+        //myself.put("lighting",true);
+        myself.put("installationID",insId);
+
+        myself.saveInBackground();
+
         //Toast.makeText(getApplicationContext(),
         //        requestDevice, Toast.LENGTH_LONG).show();
-
-
-
         switch (requestDevice) {
             case 0:
                 query.whereEqualTo("lighting", true);
+                chargerType = "lighting charger";
                 break;
             case 1:
                 query.whereEqualTo("pins", true);
+                chargerType = "3pins charger";
                 break;
             case 2:
                 query.whereEqualTo("miniusb", true);
+                chargerType = "mini usb charger";
                 break;
             case 3:
                 query.whereEqualTo("microusb", true);
+                chargerType = "micro usb charger";
                 break;
             case 4:
-                query.whereEqualTo("typedc", true);
+                query.whereEqualTo("typec", true);
+                chargerType = "type c charger";
                 break;
             case 5:
                 query.whereEqualTo("apple", true);
+                chargerType = "Apple laptop charger";
                 break;
             case 6:
                 query.whereEqualTo("hp", true);
+                chargerType = "HP laptop charger";
                 break;
             case 7:
                 query.whereEqualTo("dell", true);
+                chargerType = "Dell laptop charger";
                 break;
 
         }
+
+        //put the borrow log in the background
+        message.put("borrower", email);
+
 
         query.setLimit(5);
         query.findInBackground(new FindCallback<AVObject>() {
             @Override
 
             public void done(List<AVObject> list, AVException e) {
-
-                for (AVObject i : list) {
-                    Toast.makeText(getApplicationContext(),
-                            "FOUND!!!!", Toast.LENGTH_LONG).show();
-                    String pushTarget = i.getString("installationID");
-                    pushNotification(pushTarget);
+                if(list != null){
+                    int counter = 1;
+                    for (AVObject i : list) {
+                        //Toast.makeText(getApplicationContext(),
+                                //"FOUND!!!!", Toast.LENGTH_LONG).show();
+                        //avQuery
+                        String pushTarget = i.getString("installationID");
+                        message.put("receiver" + counter, i.getString("userId"));
+                        pushNotification(pushTarget);
+                        counter++;
+                    }
                 }
+                //push the log to server
+                message.saveInBackground();
             }
         });
+
     }
 
     private void pushNotification(String pushTarget) {
@@ -220,7 +271,7 @@ public class SendRequestActivity extends Activity {
         Log.e("test","CAN PUSH");
         AVQuery pushQuery = AVInstallation.getQuery();
         pushQuery.whereEqualTo("installationId", pushTarget);
-        AVPush.sendMessageInBackground("message to installation", pushQuery, new SendCallback() {
+        AVPush.sendMessageInBackground("Someone want a " + chargerType + " from you", pushQuery, new SendCallback() {
             @Override
             public void done(AVException e) {
 

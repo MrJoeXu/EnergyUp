@@ -60,7 +60,7 @@
             android:id="@+id/num_energy"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1"
+            android:text="3"
             android:layout_below="@id/request_button"
             android:textSize="65dp"
             android:fontFamily="sans-serif-black"

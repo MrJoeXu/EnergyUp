@@ -9,9 +9,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.avos.avoscloud.AVException;
 import com.avos.avoscloud.AVOSCloud;
+import com.avos.avoscloud.AVObject;
+import com.avos.avoscloud.AVQuery;
+import com.avos.avoscloud.AVUser;
+import com.avos.avoscloud.FindCallback;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.util.List;
 
 public class ScanCodeActivity extends Activity {
 
@@ -59,12 +66,28 @@ public class ScanCodeActivity extends Activity {
             Intent requestIntent = new Intent(ScanCodeActivity.this, FinishTransactionActivity.class);
             startActivity(requestIntent);
 
+            //delete data
+            AVQuery aQuery = new AVQuery("Log");
+            aQuery.setLimit(3);
+            aQuery.whereEqualTo("borrower", AVUser.getCurrentUser().getEmail());
+            aQuery.findInBackground(new FindCallback<AVObject>() {
+
+                @Override
+                public void done(List< AVObject > list, AVException e) {
+                    if (list != null) {
+                        for (AVObject o : list) {
+                            o.deleteInBackground();
+                        }
+                    }
+                }
+            });
+
             if(result.getContents() == null) {
                 Log.d("MainActivity","Cancelled Scan");
-                Toast.makeText(this,"Cancelled", Toast.LENGTH_LONG).show();
+                //Toast.makeText(this,"Cancelled", Toast.LENGTH_LONG).show();
             } else {
                 Log.d("MainActivity", "Scanned");
-                Toast.makeText(this,"Scanned: "+result.getContents(),Toast.LENGTH_LONG).show();
+                //Toast.makeText(this,"Scanned: "+result.getContents(),Toast.LENGTH_LONG).show();
 
             }
         } else {
@@ -72,23 +95,5 @@ public class ScanCodeActivity extends Activity {
         }
     }
 
-    /**
-     * Created by JoeXu on 4/23/16.package lxx_team.energyup;
 
-     import android.app.Application;
-
-     /**
-     * Created by JoeXu on 4/23/16.
-     */
-    public static class EnergyUp extends Application {
-        @Override
-        public void onCreate() {
-            super.onCreate();
-
-            // Initialize parameter for this, AppId, AppKey
-            AVOSCloud.useAVCloudUS();
-
-            AVOSCloud.initialize(this, "3z95KghEnMhAKeF96q0btdQ3-MdYXbMMI", "tV0H3rwu8S4dvXiuFd9XC0y6");
-        }
-    }
 }

@@ -35,12 +35,12 @@ public class HaveChargers extends Activity implements View.OnClickListener {
         if(selected[i]){
             selected[i] = false;
             Button view = (Button) vi;
-            view.getBackground().clearColorFilter();
+            view.setBackgroundColor(Color.parseColor("#5C5F6B"));
         }
         else{
             selected[i] = true;
             Button view = (Button) vi;
-            view.getBackground().setColorFilter(Color.WHITE, PorterDuff.Mode.SRC_ATOP);
+            view.setBackgroundColor(Color.parseColor("#3CCA79"));
         }
     }
 
@@ -167,12 +167,29 @@ public class HaveChargers extends Activity implements View.OnClickListener {
                 if (e == null) {
                     for (AVObject o : list) {
                         o.deleteInBackground();
+                        /**
+                        o.put("lighting", selected[0]);
+                        o.put("pins", selected[1]);
+                        o.put("miniusb", selected[2]);
+                        o.put("microusb", selected[3]);
+                        o.put("typec", selected[4]);
+                        o.put("apple", selected[5]);
+                        o.put("hp", selected[6]);
+                        o.put("dell", selected[7]);
+
+                        o.saveInBackground();
+
+                        if(flag) {
+                            o.put("installationID", insId);
+                        }
+                         */
                     }
                 } else {
                     Log.d("App", "Error: " + e.getMessage());
                 }
             }
         });
+
 
         log.put("userId", userId);
         log.put("lighting", selected[0]);
@@ -186,6 +203,7 @@ public class HaveChargers extends Activity implements View.OnClickListener {
         if(flag) {
             log.put("installationID", insId);
         }
+
         log.saveInBackground();
 
         //final Intent displayIntent = new Intent(this, MainActivity.class);
