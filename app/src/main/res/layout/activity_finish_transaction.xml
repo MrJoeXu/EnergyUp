@@ -49,23 +49,29 @@
 
     <RatingBar
         android:layout_width="wrap_content"
+        android:layout_above="@+id/submit_rate"
+        android:layout_marginBottom="46dp"
         android:layout_height="wrap_content"
         android:numStars="5"
         android:layout_below="@id/rating_header"
         android:layout_centerHorizontal="true"
-        android:id="@+id/rating_bar" />
+        android:id="@+id/rating_bar"
+        android:layout_alignParentTop="true"/>
 
 
     <TextView
         android:id="@+id/avg_rating"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="176dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/submit_rate"
+        android:layout_alignStart="@+id/submit_rate"
         android:text="4.3"
         android:layout_centerHorizontal="true"
         android:textSize="70dp"
         android:textColor="#ffffff"
         android:layout_below="@id/rating_bar"/>
-
 
     <TextView
         android:id="@+id/text_average_rating"
@@ -81,16 +87,18 @@
 
     <Button
         android:id="@+id/submit_rate"
+        android:text = "SUBMIT"
+        android:layout_above="@+id/avg_rating"
         style="@style/Widget.AppCompat.Button.Colored"
         android:background="@color/primary"
         android:textColor="#ffffff"
         android:fontFamily="sans-serif-light"
         android:layout_height="wrap_content"
         android:layout_width="180dp"
-        android:text="submit"
         android:onClick="selfDestruct"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/text_average_rating" />
+
 
 
 </RelativeLayout>

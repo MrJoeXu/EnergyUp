@@ -156,9 +156,11 @@ public class DisplayListContentFragment extends Fragment implements LocationList
         AVQuery<AVObject> query = new AVQuery<AVObject>("Location");
 
         query.whereNear("location", userLocation);
+
         query.whereEqualTo("userId", renterLoc[0]);
         query.setLimit(1);
 
+        query.setLimit(0);
         query.findInBackground(new FindCallback<AVObject>() {
             @Override
             public void done(List<AVObject> list, AVException e) {
@@ -181,7 +183,9 @@ public class DisplayListContentFragment extends Fragment implements LocationList
             }
         });
 
-        //handler.postDelayed(runnable, 10 * 1000);
+
+        //handlelayed(runnable, 10 * 1000);
+
         return inflater.inflate(R.layout.fragment_display_list_content, container, false);
 
     }
